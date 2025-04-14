@@ -11,6 +11,7 @@
 
 .page {
   background-image: var(--cover-image);
+  background-color: var(--background-color);
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -26,7 +27,8 @@ header {
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
   align-items: center;
-  block-size: calc(100vh - (var(--margin) * 2));
+  /* 668px - фактически 20px так как есть margin */
+  block-size: max(calc(668px - (var(--margin) * 2)), calc(100vh - (var(--margin) * 2)));
   margin-inline: var(--margin);
   margin-block: var(--margin);
 }
@@ -110,7 +112,8 @@ header {
   content: "";
   display: inline-block;
   position: relative;
-  left: 10px;
+  left: 9px;
+  bottom: 2px;
   border-radius: 50%;
   background-color: var(--accent-color);
   block-size: 9px;
@@ -138,10 +141,6 @@ header {
   /* маргин от мэйн + маргин заданный хэдэру или футору */
   margin-block: calc(40px + 10px);
   padding-inline: 10px;
-}
-
-.main-list {
-  display: flex;
   flex-direction: column;
   gap: 50px; /* меняется с размером */
 }
@@ -220,11 +219,17 @@ h4.main__section-title {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  list-style: none;
+}
+
+.main__section-img-box li {
+  height: 100%;
 }
 
 .main__section-img-box-item {
   /* меняется с размером */
   width: 100%;
+  display: block;
   object-fit: cover;
 }
 
@@ -234,7 +239,8 @@ h4.main__section-title {
   display: grid;
   justify-content: center;
   align-items: center;
-  block-size: calc(100vh - (var(--margin) * 2));
+/* 668px - фактически 20px так как есть margin */
+block-size: max(calc(668px - (var(--margin) * 2)), calc(100vh - (var(--margin) * 2)));
   margin-inline: var(--margin);
   margin-block: var(--margin);
 }
@@ -264,9 +270,6 @@ h4.main__section-title {
   .main {
     margin-block: calc(60px + 20px);
     padding-inline: 20px;
-  }
-
-  .main-list {
     gap: 80px;
   }
 
@@ -293,28 +296,34 @@ h4.main__section-title {
     grid-template-columns: repeat(3, calc((100% - 40px) / 3));
   }
 
-  .main__section-img-box img:nth-child(1) {
+  .main__section-img-box li:nth-child(1) {
     grid-column: 1 / 3;
   }
 
-  .main__section-img-box img:nth-child(2) {
+  .main__section-img-box li:nth-child(2){
     grid-column: 3 / auto;
     grid-row: 1 / 3;
+  }
+
+  .main__section-img-box li:nth-child(2) img{
     height: 100%;
   }
 
-  .main__section-img-box img:nth-child(3) {
+  .main__section-img-box li:nth-child(3) {
     grid-column: 1 / auto;
     grid-row: 2 / 4;
+  }
+
+  .main__section-img-box li:nth-child(3) img{
     height: 100%;
   }
 
-  .main__section-img-box img:nth-child(4) {
+  .main__section-img-box li:nth-child(4) {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
 
-  .main__section-img-box img:nth-child(5) {
+  .main__section-img-box li:nth-child(5) {
     grid-column: 2 / 4;
     grid-row: 3 / auto;
   }
